@@ -2,6 +2,86 @@
 
 A self-evolving, language-aware testing harness powered by LangGraph and GPT-5. TestForge dynamically discovers testing tools for any language, orchestrates them through specialized agents, and evolves its own configuration via Meta-Harness optimization.
 
+## What Testing Does This Do?
+
+TestForge covers **6 categories of testing** across any language — all orchestrated by LLM agents that decide what to run, how to interpret results, and what to do about failures.
+
+### 1. Unit Testing
+Runs the language-native test runner against your test suite. Catches logic bugs, regressions, and assertion failures.
+
+| Language | Tool | What It Catches |
+|----------|------|-----------------|
+| Python | pytest | Function-level failures, exceptions, assertion errors |
+| Rust | cargo test | Panics, assertion failures, `#[should_panic]` violations |
+| JS/TS | jest / vitest | Expect mismatches, thrown errors, async failures |
+| Go | go test | Table-driven test failures, benchmark regressions |
+| Java | JUnit 5 (Maven/Gradle) | Assertion errors, exception tests |
+| Ruby | RSpec | Example failures, matcher mismatches |
+| C# | dotnet test | xUnit/NUnit assertion failures |
+
+### 2. Static Analysis (SAST)
+Scans source code without executing it. Finds security vulnerabilities, code smells, and bug patterns.
+
+| Tool | Languages | What It Catches |
+|------|-----------|-----------------|
+| **Semgrep** | 30+ languages | SQL injection, XSS, hardcoded secrets, insecure patterns |
+| **Bandit** | Python | Security anti-patterns (eval, exec, shell injection) |
+| **Cargo Clippy** | Rust | Idiomatic issues, potential bugs, performance anti-patterns |
+| **ESLint** | JS/TS | Code quality, security rules, unused variables |
+| **golangci-lint** | Go | Lint aggregator (gosec, staticcheck, errcheck, etc.) |
+| **RuboCop** | Ruby | Style violations, security cops |
+| **SpotBugs** | Java | Null pointer, resource leaks, correctness bugs |
+
+### 3. Dynamic Analysis (DAST)
+Tests running applications by sending requests and probing for vulnerabilities.
+
+| Tool | What It Does |
+|------|-------------|
+| **Nuclei** | Template-based vulnerability scanning against live URLs |
+| **Cargo Miri** | Detects undefined behavior in Rust (memory safety, aliasing violations) |
+| **Valgrind** | Memory leaks, invalid reads/writes in C/C++ |
+
+### 4. API Testing & Fuzzing
+Exercises HTTP/REST/GraphQL APIs with generated inputs to find contract violations and crashes.
+
+| Tool | What It Does |
+|------|-------------|
+| **Schemathesis** | Property-based fuzzing from OpenAPI/GraphQL schemas |
+| **Pact** | Consumer-driven contract testing |
+
+### 5. Dependency & Supply Chain Auditing
+Checks your dependencies for known vulnerabilities.
+
+| Tool | Language | What It Catches |
+|------|----------|-----------------|
+| **npm audit** | JS/TS | CVEs in node_modules |
+| **cargo audit** | Rust | RustSec advisory database |
+| **pip-audit / safety** | Python | PyPI vulnerability database |
+| **bundler-audit** | Ruby | Gem vulnerabilities |
+| **govulncheck** | Go | Go vulnerability database |
+| **OWASP dep-check** | Java | NVD vulnerability database |
+
+### 6. End-to-End / Browser Testing
+Drives a real browser to test user flows.
+
+| Tool | What It Does |
+|------|-------------|
+| **Playwright** | Cross-browser E2E testing (Chromium, Firefox, WebKit) |
+| **Cypress** | Component + E2E testing for web apps |
+
+### What the Agents Add on Top
+
+The testing tools above run as subprocesses. The LLM agents provide the **intelligence layer**:
+
+| Agent | What It Does |
+|-------|-------------|
+| **ToolScout** | Dynamically discovers which tools are available — reads Cargo.toml, package.json, go.mod and probes PATH. No hardcoding needed. |
+| **Planner** | Analyzes the project and decides which test categories to run and in what order |
+| **Executor** | Invokes tools with the right arguments, interprets output |
+| **Healer** | Reads failing tests, understands the bug, patches test files, re-runs to verify |
+| **Triage** | Classifies each failure: severity (critical/high/medium/low), category (regression, security, flaky), recommendation |
+| **Meta-Harness** | Evolves the harness configuration itself by analyzing prior execution traces (arXiv:2603.28052) |
+
 ## What Makes This Different
 
 | Feature | Traditional CI | TestForge |
