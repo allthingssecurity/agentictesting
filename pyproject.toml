@@ -1,0 +1,38 @@
+[project]
+name = "testforge"
+version = "0.5.0"
+description = "Polyglot agentic testing framework powered by LangGraph — pluggable tools, memory compaction, sandboxing, Meta-Harness evolution"
+requires-python = ">=3.11"
+dependencies = [
+    "langgraph>=0.4,<1",
+    "langchain-openai>=0.3,<1",
+    "langchain-core>=0.3,<1",
+    "pydantic>=2.0,<3",
+    "typer>=0.15,<1",
+    "pyyaml>=6,<7",
+    "rich>=13,<14",
+    "jinja2>=3,<4",
+    "tiktoken>=0.7",
+]
+
+[project.optional-dependencies]
+all = [
+    "pytest>=8",
+    "pytest-json-report>=1.5",
+    "playwright>=1.40",
+    "httpx>=0.27",
+    "schemathesis>=3",
+    "docker>=7",
+]
+
+[project.scripts]
+testforge = "testforge.cli:app"
+
+[project.entry-points."testforge.tools"]
+# Built-in adapters are auto-discovered from testforge.tools.adapters package.
+# Third-party adapters register here:
+# my_adapter = "my_package.adapters:MyAdapter"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,15 @@
+project_name: tasklib-typescript
+project_root: .
+test_types:
+  - unit
+  - security
+
+unit:
+  enabled: true
+  timeout: 60
+
+security:
+  enabled: true
+  timeout: 120
+
+heal_max_attempts: 2

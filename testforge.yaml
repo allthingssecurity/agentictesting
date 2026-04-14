@@ -1,0 +1,33 @@
+project_name: my-web-app
+project_root: .
+test_types:
+  - unit
+  - integration
+  - api
+  - security
+
+unit:
+  enabled: true
+  timeout: 60
+  extra_args: ["-x", "--tb=short"]
+
+integration:
+  enabled: true
+  timeout: 120
+  extra_args: ["-m", "integration"]
+
+browser:
+  enabled: false
+  timeout: 180
+
+api:
+  enabled: true
+  timeout: 90
+
+security:
+  enabled: true
+  timeout: 120
+
+openapi_spec: ./openapi.yaml
+base_url: http://localhost:8000
+heal_max_attempts: 2

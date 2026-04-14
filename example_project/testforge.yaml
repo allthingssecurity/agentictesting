@@ -1,0 +1,29 @@
+project_name: bookstore-api
+project_root: .
+test_types:
+  - unit
+  - security
+
+unit:
+  enabled: true
+  timeout: 60
+  extra_args: ["-x", "--tb=short"]
+
+integration:
+  enabled: false
+  timeout: 120
+
+browser:
+  enabled: false
+  timeout: 180
+
+api:
+  enabled: false
+  timeout: 90
+
+security:
+  enabled: true
+  timeout: 120
+
+base_url: http://localhost:8000
+heal_max_attempts: 2
