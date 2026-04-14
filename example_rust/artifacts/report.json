@@ -1,0 +1,119 @@
+{
+  "plan": {
+    "test_types": [
+      "unit",
+      "security"
+    ],
+    "rationale": "Enabled per manifest test_types: unit and security. The crate is a Rust library with embedded unit tests in src/lib.rs; no integration/tests directory exists. Plan: 1) Unit: run cargo test --all-targets (timeout 60s) to execute #[cfg(test)] in src/lib.rs covering average, is_valid_email, clamp, fibonacci, gcd. Based on current code comments, expect failures in test_email_invalid_no_at and test_clamp_above_max; the #[should_panic] average empty test should pass by panicking. 2) Security: static analysis focusing on correctness and potential panics. Run cargo clippy --all-targets --all-features (advisory; timeout 120s) and semgrep --config p/ci --lang=rust src (timeout 120s). Optionally, run cargo +nightly miri test if environment permits, to detect UB in tests. Results should be collected into the artifacts directory as configured by the harness.",
+    "target_paths": [
+      "Cargo.toml",
+      "src/lib.rs",
+      "src/"
+    ]
+  },
+  "results": [
+    {
+      "test_type": "unit",
+      "name": "cargo test_rust",
+      "status": "failed",
+      "duration_ms": 0.0,
+      "message": "failed (exit 101)",
+      "stdout": "",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "language": "rust",
+      "tool_adapter": "cargo test",
+      "timestamp": "2026-04-14T16:03:35.006929"
+    },
+    {
+      "test_type": "security",
+      "name": "semgrep_rust",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "0 findings",
+      "stdout": "",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "language": "rust",
+      "tool_adapter": "semgrep",
+      "timestamp": "2026-04-14T16:03:35.006999"
+    },
+    {
+      "test_type": "security",
+      "name": "cargo clippy_rust",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "0 diagnostics",
+      "stdout": "",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "language": "rust",
+      "tool_adapter": "cargo clippy",
+      "timestamp": "2026-04-14T16:03:35.007012"
+    },
+    {
+      "test_type": "unit",
+      "name": "cargo miri_rust",
+      "status": "failed",
+      "duration_ms": 0.0,
+      "message": "failed (exit 1)",
+      "stdout": "",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "language": "rust",
+      "tool_adapter": "cargo miri",
+      "timestamp": "2026-04-14T16:03:35.007021"
+    }
+  ],
+  "findings": [
+    {
+      "test_result": {
+        "test_type": "unit",
+        "name": "cargo test_rust",
+        "status": "failed",
+        "duration_ms": 0.0,
+        "message": "failed (exit 101)",
+        "stdout": "",
+        "stderr": "",
+        "file_path": null,
+        "line_number": null,
+        "language": "rust",
+        "tool_adapter": "cargo test",
+        "timestamp": "2026-04-14T16:03:35.006929"
+      },
+      "severity": "high",
+      "category": "test-failure",
+      "recommendation": "Exit 101 suggests the test binary panicked or had failing assertions. Reproduce locally (e.g., run: cargo test -- --nocapture and narrow to the failing test), inspect the logs/backtrace, fix the underlying logic or adjust test expectations, and remove any flakiness (timeouts, nondeterminism, reliance on system state).",
+      "healed": false,
+      "heal_diff": null
+    },
+    {
+      "test_result": {
+        "test_type": "unit",
+        "name": "cargo miri_rust",
+        "status": "failed",
+        "duration_ms": 0.0,
+        "message": "failed (exit 1)",
+        "stdout": "",
+        "stderr": "",
+        "file_path": null,
+        "line_number": null,
+        "language": "rust",
+        "tool_adapter": "cargo miri",
+        "timestamp": "2026-04-14T16:03:35.007021"
+      },
+      "severity": "critical",
+      "category": "undefined-behavior",
+      "recommendation": "Miri exit 1 typically indicates UB was detected. Run locally with Miri to get the full report (e.g., cargo miri test with -Zmiri-strict-provenance, -Zmiri-tag-raw-pointers, and RUST_BACKTRACE=1). Fix the unsafe code causing UB (invalid deref, out-of-bounds, use-after-free, uninitialized read, or violated aliasing/Send/Sync invariants), add targeted tests, and prefer safe abstractions to avoid the unsafe pattern.",
+      "healed": false,
+      "heal_diff": null
+    }
+  ],
+  "summary": "Ran 4 tests across 1 languages (rust). Tools: cargo clippy, cargo miri, cargo test, semgrep. 2 passed, 2 failed, 0 healed. Findings: 1 critical, 1 high",
+  "pass_rate": 0.5,
+  "generated_at": "2026-04-14T16:07:50.624311"
+}

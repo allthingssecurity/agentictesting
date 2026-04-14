@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TestForge Report</title>
+<style>
+  :root { --bg: #0a0a0a; --card: #141414; --border: #2a2a2a; --text: #e0e0e0;
+          --green: #22c55e; --red: #ef4444; --yellow: #eab308; --blue: #3b82f6; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text);
+         padding: 2rem; max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .meta { color: #888; margin-bottom: 2rem; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+           gap: 1rem; margin-bottom: 2rem; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+          padding: 1.2rem; text-align: center; }
+  .stat .value { font-size: 2rem; font-weight: bold; }
+  .stat .label { color: #888; font-size: 0.85rem; margin-top: 0.3rem; }
+  .pass-rate .value { color: var(--green); }
+  .fail-count .value { color: var(--red); }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--card); color: #aaa; font-size: 0.8rem; text-transform: uppercase; }
+  .badge { padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .badge-passed { background: #166534; color: #bbf7d0; }
+  .badge-failed { background: #7f1d1d; color: #fecaca; }
+  .badge-healed { background: #1e3a5f; color: #93c5fd; }
+  .badge-skipped { background: #3f3f46; color: #d4d4d8; }
+  .badge-error { background: #7f1d1d; color: #fecaca; }
+  .badge-critical { background: #7f1d1d; color: #fecaca; }
+  .badge-high { background: #92400e; color: #fed7aa; }
+  .badge-medium { background: #854d0e; color: #fef08a; }
+  .badge-low { background: #1e3a5f; color: #93c5fd; }
+  .badge-info { background: #3f3f46; color: #d4d4d8; }
+  .section-title { font-size: 1.2rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem;
+                   border-bottom: 1px solid var(--border); }
+  .summary { background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+             padding: 1.5rem; margin-bottom: 2rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+<h1>TestForge Report</h1>
+<p class="meta">Generated: 2026-04-14 15:21:23</p>
+
+<div class="stats">
+  <div class="stat pass-rate">
+    <div class="value">88%</div>
+    <div class="label">Pass Rate</div>
+  </div>
+  <div class="stat">
+    <div class="value">16</div>
+    <div class="label">Total Tests</div>
+  </div>
+  <div class="stat fail-count">
+    <div class="value">2</div>
+    <div class="label">Failures</div>
+  </div>
+  <div class="stat">
+    <div class="value">2</div>
+    <div class="label">Findings</div>
+  </div>
+</div>
+
+<div class="summary">Ran 16 tests across 2 test types: unit, security. 14 passed, 2 failed, 1 healed. Findings: 2 high</div>
+
+<h2 class="section-title">Test Results</h2>
+<table>
+<thead><tr><th>Type</th><th>Name</th><th>Status</th><th>Duration</th><th>Message</th></tr></thead>
+<tbody>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_normal_discount</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_single_item</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_zero_quantity</td><td><span class='badge badge-healed'>healed</span></td><td>0ms</td><td>tests/test_app.py:16: in test_zero_quantity
+    result = calculate_discount(10.0, 0)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app.py:72: in calculate_discount
+    return total / quantity  # ZeroDivisi</td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_api.py::TestListBooks::test_list_returns_books</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_api.py::TestListBooks::test_list_book_structure</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_api.py::TestGetBook::test_get_existing</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_api.py::TestGetBook::test_get_nonexistent</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_api.py::TestCreateBook::test_create_valid</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_api.py::TestCreateBook::test_create_missing_field</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_api.py::TestSearch::test_search_finds_book</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_api.py::TestSearch::test_search_returns_debug_query</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_normal_discount</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_single_item</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td></td></tr>
+<tr><td>unit</td><td>agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_zero_quantity</td><td><span class='badge badge-healed'>healed</span></td><td>0ms</td><td>tests/test_app.py:16: in test_zero_quantity
+    result = calculate_discount(10.0, 0)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app.py:72: in calculate_discount
+    return total / quantity  # ZeroDivisi</td></tr>
+<tr><td>security</td><td>semgrep_sast</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td>0 findings
+[]</td></tr>
+<tr><td>security</td><td>nuclei_dast</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td><td>0 findings
+[]</td></tr>
+
+</tbody>
+</table>
+
+<h2 class='section-title'>Findings</h2>
+<table>
+<thead><tr><th>Severity</th><th>Category</th><th>Test</th><th>Recommendation</th><th>Healed</th></tr></thead>
+<tbody>
+<tr><td><span class='badge badge-high'>high</span></td><td>missing-validation</td><td>agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_zero_quantity</td><td>In calculate_discount, guard against quantity == 0 to prevent ZeroDivisionError. Add input validation and define behavior per spec/test (e.g., return 0.0 for zero quantity or raise a ValueError). Also</td><td>Yes</td></tr>
+<tr><td><span class='badge badge-high'>high</span></td><td>missing-validation</td><td>agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_zero_quantity</td><td>Add a precondition check in calculate_discount to handle quantity == 0 before dividing. Decide and document expected behavior (return 0.0 or raise a ValueError), and extend unit tests to cover zero/ne</td><td>Yes</td></tr>
+</tbody></table>
+
+</body>
+</html>

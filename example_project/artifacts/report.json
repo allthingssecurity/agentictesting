@@ -1,0 +1,251 @@
+{
+  "plan": {
+    "test_types": [
+      "unit",
+      "security"
+    ],
+    "rationale": "unit: Validate core logic (calculate_discount, paginate) and data invariants via tests/test_app.py; exposes known bugs (division by zero, pagination off-by-one). Integration-style endpoint tests in tests/test_api.py are excluded per manifest (integration disabled). security: Perform SAST on app.py (e.g., detect SQL-injection-like string concatenation in /search) and run a dependency vulnerability audit at the project root. API/browser/integration are disabled in the manifest.",
+    "target_paths": [
+      "tests/test_app.py",
+      "app.py",
+      "."
+    ]
+  },
+  "results": [
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_normal_discount",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 2 passed in 0.14s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:01.667946"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_single_item",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 2 passed in 0.14s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:01.667962"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_zero_quantity",
+      "status": "failed",
+      "duration_ms": 0.0,
+      "message": "tests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero",
+      "stdout": "..F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 2 passed in 0.14s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:01.667966"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_api.py::TestListBooks::test_list_returns_books",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915178"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_api.py::TestListBooks::test_list_book_structure",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915195"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_api.py::TestGetBook::test_get_existing",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915200"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_api.py::TestGetBook::test_get_nonexistent",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915202"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_api.py::TestCreateBook::test_create_valid",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915204"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_api.py::TestCreateBook::test_create_missing_field",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915205"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_api.py::TestSearch::test_search_finds_book",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915208"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_api.py::TestSearch::test_search_returns_debug_query",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915209"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_normal_discount",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915211"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_single_item",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915212"
+    },
+    {
+      "test_type": "unit",
+      "name": "agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_zero_quantity",
+      "status": "failed",
+      "duration_ms": 0.0,
+      "message": "tests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero",
+      "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:42.915213"
+    },
+    {
+      "test_type": "security",
+      "name": "semgrep_sast",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "0 findings\n[]",
+      "stdout": "",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:10.749025"
+    },
+    {
+      "test_type": "security",
+      "name": "nuclei_dast",
+      "status": "passed",
+      "duration_ms": 0.0,
+      "message": "0 findings\n[]",
+      "stdout": "",
+      "stderr": "",
+      "file_path": null,
+      "line_number": null,
+      "timestamp": "2026-04-14T15:18:10.749769"
+    }
+  ],
+  "findings": [
+    {
+      "test_result": {
+        "test_type": "unit",
+        "name": "agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_zero_quantity",
+        "status": "failed",
+        "duration_ms": 0.0,
+        "message": "tests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero",
+        "stdout": "..F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 2 passed in 0.14s\n",
+        "stderr": "",
+        "file_path": null,
+        "line_number": null,
+        "timestamp": "2026-04-14T15:18:01.667966"
+      },
+      "severity": "high",
+      "category": "missing-validation",
+      "recommendation": "In calculate_discount, guard against quantity == 0 to prevent ZeroDivisionError. Add input validation and define behavior per spec/test (e.g., return 0.0 for zero quantity or raise a ValueError). Also add tests for zero and negative quantities.",
+      "healed": true,
+      "heal_diff": null
+    },
+    {
+      "test_result": {
+        "test_type": "unit",
+        "name": "agentic_testing/example_project/tests/test_app.py::TestCalculateDiscount::test_zero_quantity",
+        "status": "failed",
+        "duration_ms": 0.0,
+        "message": "tests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero",
+        "stdout": "..........F\n=================================== FAILURES ===================================\n___________________ TestCalculateDiscount.test_zero_quantity ___________________\ntests/test_app.py:16: in test_zero_quantity\n    result = calculate_discount(10.0, 0)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\napp.py:72: in calculate_discount\n    return total / quantity  # ZeroDivisionError when quantity=0\n           ^^^^^^^^^^^^^^^^\nE   ZeroDivisionError: division by zero\n=========================== short test summary info ============================\nFAILED tests/test_app.py::TestCalculateDiscount::test_zero_quantity - ZeroDiv...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 10 passed in 0.15s\n",
+        "stderr": "",
+        "file_path": null,
+        "line_number": null,
+        "timestamp": "2026-04-14T15:18:42.915213"
+      },
+      "severity": "high",
+      "category": "missing-validation",
+      "recommendation": "Add a precondition check in calculate_discount to handle quantity == 0 before dividing. Decide and document expected behavior (return 0.0 or raise a ValueError), and extend unit tests to cover zero/negative quantities.",
+      "healed": true,
+      "heal_diff": null
+    }
+  ],
+  "summary": "Ran 16 tests across 2 test types: unit, security. 14 passed, 2 failed, 1 healed. Findings: 2 high",
+  "pass_rate": 0.875,
+  "generated_at": "2026-04-14T15:21:23.211461"
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TestForge Report</title>
+<style>
+  :root { --bg: #0a0a0a; --card: #141414; --border: #2a2a2a; --text: #e0e0e0;
+          --green: #22c55e; --red: #ef4444; --yellow: #eab308; --blue: #3b82f6; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text);
+         padding: 2rem; max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .meta { color: #888; margin-bottom: 2rem; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+           gap: 1rem; margin-bottom: 2rem; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+          padding: 1.2rem; text-align: center; }
+  .stat .value { font-size: 2rem; font-weight: bold; }
+  .stat .label { color: #888; font-size: 0.85rem; margin-top: 0.3rem; }
+  .pass-rate .value { color: var(--green); }
+  .fail-count .value { color: var(--red); }
+  .lang-count .value { color: var(--blue); }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--card); color: #aaa; font-size: 0.8rem; text-transform: uppercase; }
+  .badge { padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .badge-passed { background: #166534; color: #bbf7d0; }
+  .badge-failed { background: #7f1d1d; color: #fecaca; }
+  .badge-healed { background: #1e3a5f; color: #93c5fd; }
+  .badge-skipped { background: #3f3f46; color: #d4d4d8; }
+  .badge-error { background: #7f1d1d; color: #fecaca; }
+  .badge-critical { background: #7f1d1d; color: #fecaca; }
+  .badge-high { background: #92400e; color: #fed7aa; }
+  .badge-medium { background: #854d0e; color: #fef08a; }
+  .badge-low { background: #1e3a5f; color: #93c5fd; }
+  .badge-info { background: #3f3f46; color: #d4d4d8; }
+  .section-title { font-size: 1.2rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem;
+                   border-bottom: 1px solid var(--border); }
+  .summary { background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+             padding: 1.5rem; margin-bottom: 2rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+<h1>TestForge v0.5 Report</h1>
+<p class="meta">Generated: 2026-04-14 16:22:40</p>
+
+<div class="stats">
+  <div class="stat pass-rate"><div class="value">57%</div><div class="label">Pass Rate</div></div>
+  <div class="stat"><div class="value">28</div><div class="label">Total Tests</div></div>
+  <div class="stat fail-count"><div class="value">12</div><div class="label">Failures</div></div>
+  <div class="stat lang-count"><div class="value">2</div><div class="label">Languages</div></div>
+  <div class="stat"><div class="value">12</div><div class="label">Findings</div></div>
+  <div class="stat"><div class="value">5</div><div class="label">Tools Used</div></div>
+</div>
+
+<div class="summary">Ran 28 tests across 2 languages (javascript, typescript). Tools: jest, npm-audit, playwright, semgrep, vitest. 16 passed, 12 failed, 0 healed. Findings: 10 high, 2 low</div>
+
+<h2 class="section-title">Test Results</h2>
+<table>
+<thead><tr><th>Language</th><th>Tool</th><th>Type</th><th>Name</th><th>Status</th><th>Duration</th></tr></thead>
+<tbody><tr><td>javascript</td><td>vitest</td><td>unit</td><td>addTask should add a task with default priority</td><td><span class='badge badge-passed'>passed</span></td><td>1ms</td></tr>
+<tr><td>javascript</td><td>vitest</td><td>unit</td><td>addTask should assign incrementing ids</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>javascript</td><td>vitest</td><td>unit</td><td>completeTask should mark task as done</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>javascript</td><td>vitest</td><td>unit</td><td>completeTask should return false for non-existent id</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>javascript</td><td>vitest</td><td>unit</td><td>filterByPriority should return only tasks matching the priority</td><td><span class='badge badge-failed'>failed</span></td><td>5ms</td></tr>
+<tr><td>javascript</td><td>vitest</td><td>unit</td><td>completionPercentage should return 50 when half are done</td><td><span class='badge badge-failed'>failed</span></td><td>1ms</td></tr>
+<tr><td>javascript</td><td>vitest</td><td>unit</td><td>completionPercentage should return 0 when none are done</td><td><span class='badge badge-failed'>failed</span></td><td>0ms</td></tr>
+<tr><td>javascript</td><td>vitest</td><td>unit</td><td>searchTasks should find tasks case-insensitively</td><td><span class='badge badge-failed'>failed</span></td><td>0ms</td></tr>
+<tr><td>javascript</td><td>vitest</td><td>unit</td><td>sortTasks should sort by priority then title</td><td><span class='badge badge-passed'>passed</span></td><td>10ms</td></tr>
+<tr><td>javascript</td><td>vitest</td><td>unit</td><td>getTasks should return a copy of tasks</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>javascript</td><td>jest</td><td>unit</td><td>jest_javascript</td><td><span class='badge badge-failed'>failed</span></td><td>0ms</td></tr>
+<tr><td>javascript</td><td>playwright</td><td>browser</td><td>playwright_javascript</td><td><span class='badge badge-failed'>failed</span></td><td>0ms</td></tr>
+<tr><td>javascript</td><td>semgrep</td><td>security</td><td>semgrep_javascript</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>javascript</td><td>npm-audit</td><td>security</td><td>npm-audit_javascript</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>typescript</td><td>vitest</td><td>unit</td><td>addTask should add a task with default priority</td><td><span class='badge badge-passed'>passed</span></td><td>2ms</td></tr>
+<tr><td>typescript</td><td>vitest</td><td>unit</td><td>addTask should assign incrementing ids</td><td><span class='badge badge-passed'>passed</span></td><td>1ms</td></tr>
+<tr><td>typescript</td><td>vitest</td><td>unit</td><td>completeTask should mark task as done</td><td><span class='badge badge-passed'>passed</span></td><td>1ms</td></tr>
+<tr><td>typescript</td><td>vitest</td><td>unit</td><td>completeTask should return false for non-existent id</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>typescript</td><td>vitest</td><td>unit</td><td>filterByPriority should return only tasks matching the priority</td><td><span class='badge badge-failed'>failed</span></td><td>11ms</td></tr>
+<tr><td>typescript</td><td>vitest</td><td>unit</td><td>completionPercentage should return 50 when half are done</td><td><span class='badge badge-failed'>failed</span></td><td>1ms</td></tr>
+<tr><td>typescript</td><td>vitest</td><td>unit</td><td>completionPercentage should return 0 when none are done</td><td><span class='badge badge-failed'>failed</span></td><td>2ms</td></tr>
+<tr><td>typescript</td><td>vitest</td><td>unit</td><td>searchTasks should find tasks case-insensitively</td><td><span class='badge badge-failed'>failed</span></td><td>1ms</td></tr>
+<tr><td>typescript</td><td>vitest</td><td>unit</td><td>sortTasks should sort by priority then title</td><td><span class='badge badge-passed'>passed</span></td><td>13ms</td></tr>
+<tr><td>typescript</td><td>vitest</td><td>unit</td><td>getTasks should return a copy of tasks</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>typescript</td><td>jest</td><td>unit</td><td>jest_typescript</td><td><span class='badge badge-failed'>failed</span></td><td>0ms</td></tr>
+<tr><td>typescript</td><td>semgrep</td><td>security</td><td>semgrep_typescript</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>typescript</td><td>playwright</td><td>browser</td><td>playwright_typescript</td><td><span class='badge badge-failed'>failed</span></td><td>0ms</td></tr>
+<tr><td>typescript</td><td>npm-audit</td><td>security</td><td>npm-audit_typescript</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+</tbody>
+</table>
+
+<h2 class='section-title'>Findings</h2>
+<table>
+<thead><tr><th>Severity</th><th>Category</th><th>Test</th><th>Recommendation</th><th>Healed</th></tr></thead>
+<tbody>
+<tr><td><span class='badge badge-high'>high</span></td><td>regression</td><td>filterByPriority should return only tasks matching the priority</td><td>Fix filterByPriority to strictly filter tasks whose priority equals the requested value; handle undefined/null priorities and add tests for edge cases.</td><td>No</td></tr>
+<tr><td><span class='badge badge-high'>high</span></td><td>regression</td><td>completionPercentage should return 50 when half are done</td><td>Update completionPercentage to compute Math.round((completed/total) * 100) and ensure correct handling when half are done.</td><td>No</td></tr>
+<tr><td><span class='badge badge-high'>high</span></td><td>regression</td><td>completionPercentage should return 0 when none are done</td><td>Guard against zero totals and return 0 when none are done; avoid NaN by short-circuiting when total === 0.</td><td>No</td></tr>
+<tr><td><span class='badge badge-high'>high</span></td><td>regression</td><td>searchTasks should find tasks case-insensitively</td><td>Make searchTasks case-insensitive by normalizing both query and searchable fields (e.g., toLowerCase); add tests for mixed-case inputs.</td><td>No</td></tr>
+<tr><td><span class='badge badge-low'>low</span></td><td>dependency-management</td><td>jest_javascript</td><td>Pin jest in devDependencies (avoid auto-install), run a clean install, and update/replace packages pulling in deprecated inflight (e.g., upgrade deps or use overrides/resolutions) to remove the deprec</td><td>No</td></tr>
+<tr><td><span class='badge badge-high'>high</span></td><td>e2e-test-failure</td><td>playwright_javascript</td><td>Inspect Playwright logs/trace (run with --trace=on), ensure browsers are installed (npx playwright install), verify base URL/env/auth setup in CI, and fix failing selectors or app regressions.</td><td>No</td></tr>
+<tr><td><span class='badge badge-high'>high</span></td><td>regression</td><td>filterByPriority should return only tasks matching the priority</td><td>Same as #1: ensure filterByPriority strictly filters by the given priority and covers null/undefined cases with tests.</td><td>No</td></tr>
+<tr><td><span class='badge badge-high'>high</span></td><td>regression</td><td>completionPercentage should return 50 when half are done</td><td>Same as #2: compute percentage as Math.round((completed/total) * 100) and validate the 50% case.</td><td>No</td></tr>
+<tr><td><span class='badge badge-high'>high</span></td><td>regression</td><td>completionPercentage should return 0 when none are done</td><td>Same as #3: return 0 when none are done and handle total === 0 safely.</td><td>No</td></tr>
+<tr><td><span class='badge badge-high'>high</span></td><td>regression</td><td>searchTasks should find tasks case-insensitively</td><td>Same as #4: implement case-insensitive task search by normalizing strings prior to comparison.</td><td>No</td></tr>
+<tr><td><span class='badge badge-low'>low</span></td><td>dependency-management</td><td>jest_typescript</td><td>Pin jest (and ts-jest if used) in devDependencies, commit the lockfile, and upgrade or override transitive dependencies to eliminate deprecated inflight.</td><td>No</td></tr>
+<tr><td><span class='badge badge-high'>high</span></td><td>e2e-test-failure</td><td>playwright_typescript</td><td>Same as #6: enable Playwright trace, verify Playwright/browser installation in CI, confirm env/base URL, and stabilize failing tests or fix the underlying UI regression.</td><td>No</td></tr>
+</tbody></table>
+</body>
+</html>

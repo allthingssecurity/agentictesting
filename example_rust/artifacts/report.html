@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TestForge Report</title>
+<style>
+  :root { --bg: #0a0a0a; --card: #141414; --border: #2a2a2a; --text: #e0e0e0;
+          --green: #22c55e; --red: #ef4444; --yellow: #eab308; --blue: #3b82f6; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text);
+         padding: 2rem; max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .meta { color: #888; margin-bottom: 2rem; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+           gap: 1rem; margin-bottom: 2rem; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+          padding: 1.2rem; text-align: center; }
+  .stat .value { font-size: 2rem; font-weight: bold; }
+  .stat .label { color: #888; font-size: 0.85rem; margin-top: 0.3rem; }
+  .pass-rate .value { color: var(--green); }
+  .fail-count .value { color: var(--red); }
+  .lang-count .value { color: var(--blue); }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+  th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--card); color: #aaa; font-size: 0.8rem; text-transform: uppercase; }
+  .badge { padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .badge-passed { background: #166534; color: #bbf7d0; }
+  .badge-failed { background: #7f1d1d; color: #fecaca; }
+  .badge-healed { background: #1e3a5f; color: #93c5fd; }
+  .badge-skipped { background: #3f3f46; color: #d4d4d8; }
+  .badge-error { background: #7f1d1d; color: #fecaca; }
+  .badge-critical { background: #7f1d1d; color: #fecaca; }
+  .badge-high { background: #92400e; color: #fed7aa; }
+  .badge-medium { background: #854d0e; color: #fef08a; }
+  .badge-low { background: #1e3a5f; color: #93c5fd; }
+  .badge-info { background: #3f3f46; color: #d4d4d8; }
+  .section-title { font-size: 1.2rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem;
+                   border-bottom: 1px solid var(--border); }
+  .summary { background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+             padding: 1.5rem; margin-bottom: 2rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+<h1>TestForge v0.5 Report</h1>
+<p class="meta">Generated: 2026-04-14 16:07:50</p>
+
+<div class="stats">
+  <div class="stat pass-rate"><div class="value">50%</div><div class="label">Pass Rate</div></div>
+  <div class="stat"><div class="value">4</div><div class="label">Total Tests</div></div>
+  <div class="stat fail-count"><div class="value">2</div><div class="label">Failures</div></div>
+  <div class="stat lang-count"><div class="value">1</div><div class="label">Languages</div></div>
+  <div class="stat"><div class="value">2</div><div class="label">Findings</div></div>
+  <div class="stat"><div class="value">4</div><div class="label">Tools Used</div></div>
+</div>
+
+<div class="summary">Ran 4 tests across 1 languages (rust). Tools: cargo clippy, cargo miri, cargo test, semgrep. 2 passed, 2 failed, 0 healed. Findings: 1 critical, 1 high</div>
+
+<h2 class="section-title">Test Results</h2>
+<table>
+<thead><tr><th>Language</th><th>Tool</th><th>Type</th><th>Name</th><th>Status</th><th>Duration</th></tr></thead>
+<tbody><tr><td>rust</td><td>cargo test</td><td>unit</td><td>cargo test_rust</td><td><span class='badge badge-failed'>failed</span></td><td>0ms</td></tr>
+<tr><td>rust</td><td>semgrep</td><td>security</td><td>semgrep_rust</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>rust</td><td>cargo clippy</td><td>security</td><td>cargo clippy_rust</td><td><span class='badge badge-passed'>passed</span></td><td>0ms</td></tr>
+<tr><td>rust</td><td>cargo miri</td><td>unit</td><td>cargo miri_rust</td><td><span class='badge badge-failed'>failed</span></td><td>0ms</td></tr>
+</tbody>
+</table>
+
+<h2 class='section-title'>Findings</h2>
+<table>
+<thead><tr><th>Severity</th><th>Category</th><th>Test</th><th>Recommendation</th><th>Healed</th></tr></thead>
+<tbody>
+<tr><td><span class='badge badge-high'>high</span></td><td>test-failure</td><td>cargo test_rust</td><td>Exit 101 suggests the test binary panicked or had failing assertions. Reproduce locally (e.g., run: cargo test -- --nocapture and narrow to the failing test), inspect the logs/backtrace, fix the under</td><td>No</td></tr>
+<tr><td><span class='badge badge-critical'>critical</span></td><td>undefined-behavior</td><td>cargo miri_rust</td><td>Miri exit 1 typically indicates UB was detected. Run locally with Miri to get the full report (e.g., cargo miri test with -Zmiri-strict-provenance, -Zmiri-tag-raw-pointers, and RUST_BACKTRACE=1). Fix </td><td>No</td></tr>
+</tbody></table>
+</body>
+</html>
