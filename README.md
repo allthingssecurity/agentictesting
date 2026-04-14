@@ -150,6 +150,7 @@ TestForge has **12 built-in adapters** and discovers additional tools dynamicall
 
 ## Documentation
 
+- **[SETUP.md](docs/SETUP.md) — How to run TestForge against your project** (start here)
 - [DESIGN.md](docs/DESIGN.md) — Why harnesses matter, theoretical foundations
 - [ARCHITECTURE.md](docs/ARCHITECTURE.md) — System architecture and component design
 - [WORKING.md](docs/WORKING.md) — How the pipeline works step-by-step
