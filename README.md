@@ -159,16 +159,69 @@ TestForge has **12 built-in adapters** and discovers additional tools dynamicall
 
 ## Example Results
 
-### Rust Project (`example_rust/`)
-- **ToolScout discovered**: cargo test, cargo clippy, cargo miri (dynamic)
-- **cargo miri found critical undefined behavior** — a finding no other tool produced
-- Pass rate: 50% → Healer patched tests with `#[ignore]` + bug documentation
+We ran TestForge against three example projects. Each demonstrates different testing categories depending on what the ToolScout discovered and what was available on the machine.
 
-### TypeScript Project (`example_ts/`)
-- **ToolScout discovered**: npm-audit, playwright (dynamic)
-- **npm-audit confirmed zero vulnerabilities**
-- Vitest caught 4 bugs: filterByPriority, completionPercentage, searchTasks
-- Pass rate: 57% → Triage classified all as regression/high-severity
+### Python Project (`example_project/`) — FastAPI bookstore
+
+| Category | Tool | Status |
+|----------|------|--------|
+| Unit Testing | pytest | 14 passed, 3 failed (division-by-zero, off-by-one bugs) |
+| SAST | semgrep | 0 findings |
+| DAST | — | Not run (no live server spun up) |
+| API Fuzz | — | Not run (schemathesis not installed) |
+| Dependency Audit | — | Not run |
+| E2E / Browser | — | Not run |
+
+**Coverage: 2 of 6 categories.** The app has FastAPI endpoints that *could* be tested with Schemathesis (API fuzz) and Nuclei (DAST) if a server were running and tools installed.
+
+Healer patched failing tests: changed `test_zero_quantity` to expect `ZeroDivisionError`, updated pagination assertions to match the off-by-one behavior.
+
+### Rust Project (`example_rust/`) — math library
+
+| Category | Tool | Status |
+|----------|------|--------|
+| Unit Testing | cargo test | 8 passed, 4 failed (email validation, clamp logic bugs) |
+| SAST | semgrep | 0 findings |
+| SAST/Lint | cargo clippy (dynamic) | 0 warnings |
+| DAST | cargo miri (dynamic) | **Critical: undefined behavior detected** |
+| API Fuzz | — | N/A (no HTTP API) |
+| Dependency Audit | — | Not run (cargo-audit not installed) |
+| E2E / Browser | — | N/A (no UI) |
+
+**Coverage: 3 of 6 categories.** ToolScout dynamically discovered cargo clippy and cargo miri — no adapter code was written for either. Miri found UB that no other tool caught.
+
+Healer patched `lib.rs`: added `#[ignore = "Known bug"]` annotations to 3 failing tests with explanations.
+
+### TypeScript Project (`example_ts/`) — task manager library
+
+| Category | Tool | Status |
+|----------|------|--------|
+| Unit Testing | vitest | 6 passed, 4 failed (filterByPriority, completionPercentage, searchTasks bugs) |
+| SAST | semgrep | 0 findings |
+| DAST | — | Not run |
+| API Fuzz | — | N/A (no HTTP API) |
+| Dependency Audit | npm audit (dynamic) | **0 vulnerabilities** |
+| E2E / Browser | playwright (dynamic) | Not run (no browser tests configured) |
+
+**Coverage: 3 of 6 categories.** ToolScout dynamically discovered npm-audit and playwright. npm-audit confirmed clean dependencies. Playwright was detected but no E2E test files existed.
+
+Triage classified all 4 failures as high-severity regressions with specific fix recommendations.
+
+### What's Not Covered Yet
+
+To exercise all 6 categories in one run, you'd need:
+- A running HTTP server for DAST (Nuclei) and API fuzzing (Schemathesis)
+- Playwright test files for E2E
+- Security tools installed (`cargo-audit`, `bandit`, etc.)
+
+The framework supports all 6 — the examples just don't have all the prerequisites installed.
+
+## Generated Reports
+
+Each example project has its reports in `artifacts/`:
+- `report.html` — dark-themed dashboard ([Rust](example_rust/artifacts/report.html), [TypeScript](example_ts/artifacts/report.html), [Python](example_project/artifacts/report.html))
+- `report.json` — machine-readable structured data
+- `junit.xml` — CI-compatible (Jenkins, GitHub Actions, GitLab)
 
 ## License
 
